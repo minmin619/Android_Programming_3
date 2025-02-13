@@ -11,4 +11,163 @@
         android:layout_height="match_parent">
 
     <!--Write me-->
+    <!-- "Now playing:" + currentSong text -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Now playing:"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/playerCurrentSongText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="(current song)"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- "Next up:" + nextSong text -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next up:"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/playerNextSongText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@android:color/black"
+            android:text="(next song)"
+            android:textSize="15sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- RecyclerView fills remaining space -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playerRV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:textSize="30sp"
+        />
+
+    <!-- Row with L on the left, skip/play/skip in center, Shuffle on the right -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <!-- The "L" loop indicator as a TextView: 30dp wide, 50dp tall, 36sp text -->
+        <TextView
+            android:id="@+id/loopIndicator"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="L"
+            android:textSize="36sp" />
+
+        <!-- Spacer to push skip/play/skip to the center -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/playerSkipBackButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:srcCompat="@drawable/ic_baseline_skip_previous_24" />
+
+        <!-- 20dp gap -->
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="0dp" />
+
+        <ImageButton
+            android:id="@+id/playerPlayPauseButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+        <!-- 20dp gap -->
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="0dp" />
+
+        <ImageButton
+            android:id="@+id/playerSkipForwardButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:srcCompat="@drawable/ic_baseline_skip_next_24" />
+
+        <!-- Spacer to push Shuffle to the far right -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/playerPermuteButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:srcCompat="@drawable/ic_shuffle_black_24dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- Time row: timePassed, SeekBar, timeRemaining -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/playerTimePassedText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="00:00"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/playerSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/playerTimeRemainingText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="00:00"
+            android:textSize="15sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>

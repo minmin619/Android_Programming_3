@@ -45,6 +45,24 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initMenu()
         // XXX Write me findNavController().popBackStack() exits
+        // 1) Show number of songs played so far
+        binding.settingsSongsPlayedText.text = viewModel.songsPlayed.toString()
+
+        // 2) Show current loop state in the switch
+        binding.settingsLoopSwitch.isChecked = viewModel.loop
+
+        // 3) Cancel button discards changes and returns to player
+        binding.settingsCancelButton.setOnClickListener {
+            // Pop the back stack -> go back to the Player
+            findNavController().popBackStack()
+        }
+
+        // 4) OK button saves changes (loop mode) and returns
+        binding.settingsOkButton.setOnClickListener {
+            // Commit the user's loop choice
+            viewModel.loop = binding.settingsLoopSwitch.isChecked
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

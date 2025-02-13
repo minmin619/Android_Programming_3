@@ -24,21 +24,48 @@ class RVDiffAdapter(private val viewModel: MainViewModel,
     companion object {
         val TAG = "RVDiffAdapter"
     }
+    private var currentIndex = -1
+
+    fun setCurrentIndex(index: Int) {
+        currentIndex = index
+
+        notifyDataSetChanged()
+    }
 
     // ViewHolder pattern holds row binding
     inner class ViewHolder(val songRowBinding : SongRowBinding)
         : RecyclerView.ViewHolder(songRowBinding.root) {
         init {
             //XXX Write me.
+            // Attach a click listener to the entire row
+            songRowBinding.root.setOnClickListener {
+                val position = adapterPosition
+                // Make sure the position is valid
+                if (position != RecyclerView.NO_POSITION) {
+                    clickListener(position)
+                }
+            }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //XXX Write me.
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = SongRowBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //XXX Write me.
+        val song = getItem(position)
+        // Display the song name and time in the row
+        holder.songRowBinding.itemSongTitle.text = song.name
+        holder.songRowBinding.itemSongTime.text = song.time
+        // Highlight if it's the currently selected (playing) song
+        if (position == viewModel.currentIndex) {
+            MainActivity.setBackgroundColor(holder.songRowBinding.root, Color.YELLOW)
+        } else {
+            MainActivity.setBackgroundColor(holder.songRowBinding.root, Color.WHITE)
+        }
     }
 
     class Diff : DiffUtil.ItemCallback<SongInfo>() {

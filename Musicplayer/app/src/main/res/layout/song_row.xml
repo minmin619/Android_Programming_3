@@ -9,4 +9,27 @@
     effect on selection -->
 
     <!-- XXX Write the row layout, textSize 20sp -->
+    <TextView
+        android:id="@+id/itemSongTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/itemSongTime"
+        app:layout_constraintBaseline_toBaselineOf="@+id/itemSongTime" />
+
+    <!-- 歌曲時長 -->
+    <TextView
+        android:id="@+id/itemSongTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,22 @@ class MainActivity : AppCompatActivity() {
     private fun initMenu() {
         addMenuProvider(object : MenuProvider {
             // XXX Write me, menu provider overrides
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+
+                menuInflater.inflate(R.menu.player_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_settings -> {
+                        findNavController(R.id.nav_host_fragment_activity_main)
+                        .navigate(R.id.settingsFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+
         })
     }
 
@@ -50,5 +66,6 @@ class MainActivity : AppCompatActivity() {
     // If we came here from another app, return to it.
     override fun onSupportNavigateUp(): Boolean {
         // XXX Write me
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
